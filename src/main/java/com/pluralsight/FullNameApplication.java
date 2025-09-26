@@ -4,48 +4,35 @@ import java.util.Scanner;
 
 public class FullNameApplication {
     public static void main(String[] args) {
-        String fullName = "";
-        String firstName ;
-        String middleName;
-        String lastName;
-        String suffix ;
+
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("What is your first name?");
-        firstName = scanner.nextLine();
-        firstName = firstName.trim();
-        fullName += firstName;
+        String firstName = getInput(scanner, "What is your first name?");
+        String middleName = getInput(scanner, "What is your middle name?");
+        String lastName = getInput(scanner,"What is your last name?");
+        String suffix = getInput(scanner, "Suffix?");
 
-        System.out.println("What is your middle name?");
-        middleName = scanner.nextLine();
-        middleName = middleName.trim();
-        fullName += " " + middleName;
+        String fullName = firstName;
 
-        if (middleName.isBlank()){
-            fullName = firstName;
-
+        if (!middleName.isBlank()){
+            fullName += " " + middleName;
         }
 
-        System.out.println("What is your last name?");
-        lastName = scanner.nextLine();
-        lastName = lastName.trim();
-        fullName += " " + lastName;
-
-        System.out.println("Suffix?");
-        suffix = scanner.nextLine();
-        suffix = suffix.trim();
+        if (!lastName.isBlank()) {
+            fullName += " " + lastName;
+        }
 
         if (!suffix.isEmpty()){
             fullName +=  ", " + suffix;
-            //fullName = fullName.replaceAll("\\s+", " ");
-            System.out.println(fullName);
-
         }
 
-        else {
-            System.out.println(fullName);
+        System.out.println(fullName);
 
-        }
+    }
+
+    public static String getInput(Scanner scanner, String prompt){
+        System.out.println(prompt);
+        return scanner.nextLine().trim();
     }
 }
